@@ -2,10 +2,10 @@
 pragma solidity ^0.8;
 pragma abicoder v2;
 
-import "./interfaces/dydx/DyDxFlashloanBase.sol";
-import "./interfaces/dydx/ICallee.sol";
+import "./interfaces/DydxFlashloanBase.sol";
+import "./interfaces/ICallee.sol";
 
-contract DyDxSoloMargin is ICallee, DyDxFlashloanBase {
+contract DyDxSoloMargin is ICallee, DydxFlashloanBase {
     address private constant SOLO = 0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e;
 
     address public flashUser;
@@ -35,6 +35,7 @@ contract DyDxSoloMargin is ICallee, DyDxFlashloanBase {
         );
         operations[2] = _getDepositAction(marketId, repayAmount);
 
+	Account.Info[] memory accountInfos = new Account.Info[](1);
         accountInfos[0] = _getAccountInfo();
 
         solo.operate(accountInfos, operations);
