@@ -1,0 +1,19 @@
+{
+  "name": "flashloandydx",
+  "version": "1.0.0",
+  "description": "Flashloan on DyDx",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ganache-cli": "./scripts/ganache-cli.sh"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@openzeppelin/contracts": "^4.2.0",
+    "dotenv": "^10.0.0"
+  }
+}
