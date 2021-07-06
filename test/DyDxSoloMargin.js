@@ -4,6 +4,8 @@ const { DAI, DAI_WHALE, USDC, USDC_WHALE, USDT, USDT_WHALE } = require('./config
 const IERC20 = artifacts.require('IERC20');
 const DyDxSoloMargin = artifacts.require('DyDxSoloMargin');
 
+const SOLO = "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e"
+
 const sendEther = (web3, from, to, amount) => {
   return web3.eth.sendTransaction({
     from,
@@ -32,12 +34,12 @@ contract('DyDxSoloMargin', (accounts) => {
   const FUND_AMOUNT = pow(10, DECIMALS).mul(new BN(2000000));
   const BORROW_AMOUNT = pow(10, DECIMALS).mul(new BN(1000000));
 
-  let DyDxSoloMargin;
+  let dyDxSoloMargin;
   let token;
 
   beforeEach(async () => {
     token = await IERC20.at(TOKEN);
-    DyDxSoloMargin = await DyDxSoloMargin.new();
+    dyDxSoloMargin = await DyDxSoloMargin.new();
 
     await sendEther(web3, accounts[0], WHALE, 1);
 
