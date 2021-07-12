@@ -46,7 +46,7 @@ contract('DyDxSoloMargin', (accounts) => {
     // send enough token to cover fee
     const bal = await token.balanceOf(WHALE);
     assert(bal.gte(FUND_AMOUNT), 'balance < fund');
-    await token.transfer(DyDxSoloMargin.address, FUND_AMOUNT, { from: WHALE });
+    await token.transfer(dyDxSoloMargin.address, FUND_AMOUNT, { from: WHALE });
 
     const soloBal = await token.balanceOf(SOLO);
     console.log(`solo balance: ${soloBal}`);
@@ -54,11 +54,11 @@ contract('DyDxSoloMargin', (accounts) => {
   });
 
   it('flash loan', async () => {
-    const tx = await DyDxSoloMargin.initiateFlashLoan(token.address, BORROW_AMOUNT, {
+    const tx = await dyDxSoloMargin.initiateFlashLoan(token.address, BORROW_AMOUNT, {
       from: WHALE
     });
 
-    console.log(`${await DyDxSoloMargin.flashUser()}`);
+    console.log(`${await dyDxSoloMargin.flashUser()}`);
 
     for (const log of tx.logs) {
       console.log(log.args.message, log.args.val.toString());
